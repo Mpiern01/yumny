@@ -4,8 +4,10 @@ class RecipeTest < ActiveSupport::TestCase
   
   
   def setup
-    @recipe = Recipe.new(name: "vegetable", description: "a great vegetable recipe")
+    @chef = Chef.create!(chefname:"Mashure", email:"mashur@example.com")
+    @recipe = @chef.recipes.build(name: "vegetable", description: "a great vegetable recipe")
   end
+  
   
   test "recipe should be valid" do
     assert @recipe.valid?
