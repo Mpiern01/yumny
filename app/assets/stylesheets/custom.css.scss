@@ -1,18 +1,42 @@
-$navbar-default-bg: #073815;
+//$navbar-default-bg: #073815;
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "toastr";
+@import "font-awesome";
+
+body {
+	background-color: #f7f7f7;
+}
+
+a, a:hover {
+	text-decoration: none;
+	color: #333;
+}
 
 .center{
   text-align: center;
 }
 
+//.jumbotron{
+  //background-image: asset-url('cover_image.png');
+  //background-size: cover;
+  //height: 350px;
+  //width: 960;
+//}
+
 .jumbotron{
-  background-image: asset-url('cover_image.png');
-  background-size: cover;
-  height: 350px;
-  width: 960;
+background: image-url('cover_image.png') no-repeat center center fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	height: 500px;
+	text-align: center;
+
 }
+
+
 
 #logo{
   float: left;
@@ -57,4 +81,42 @@ $navbar-default-bg: #073815;
 .btn-xlarge:hover {
   color: #fff;
   text-decoration: none;
+}
+
+.nav-category {
+	background: white;
+	margin-bottom: 30px;
+	border-bottom: 1px solid #ccc;
+}
+.nav-category li a{
+	color: #333;
+}
+
+.btn, .btn:active, .btn-primary:active, .btn-default:active, .btn.active, .btn:focus, .btn:hover {
+  background-color: #00b22d;
+	background: -webkit-linear-gradient(#35c350, #03b525);
+    background: -moz-linear-gradient(#35c350, #03b525);
+    background: -o-linear-gradient(#35c350, #03b525);
+    background: linear-gradient(#35c350, #03b525);
+    -webkit-transition: color 0.2s, background-color 0.2s, box-shadow 0.2s, border 0.2s;
+    -moz-transition: color 0.2s, background-color 0.2s, box-shadow 0.2s, border 0.2s;
+    -o-transition: color 0.2s, background-color 0.2s, box-shadow 0.2s, border 0.2s;
+    transition: color 0.2s, background-color 0.2s, box-shadow 0.2s, border 0.2s;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    text-shadow: 0 -1px 1px rgba(0,0,0,0.2);
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    color: #fff !important;
+    border: 1px solid #00b22d;
+}
+
+.btn-primary {
+	font-size: 16px;
+	font-weight: 700;
+	padding: 15px 35px;
+	margin: 0;
+	display: inline-block;
 }
