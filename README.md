@@ -1,7 +1,21 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Recipe-
+
+- recipe should be valid
+- name should be present
+- description should be present
+- chef_id should be present
+- maximum length for name and description, a minimum for description
+
+
+Chef-
+- chefname should be present
+- email should be present
+- size restrictions on email and chefname
+- email address should be in a valid format
+- email should be unique, case insensitive
+
 
 Things you may want to cover:
 
