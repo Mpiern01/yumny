@@ -1,19 +1,16 @@
 # README
 
-
-
-
 Yumny Ruby on Rails App with Testing V1
 (and Machine learning Recommendation engine with V2)
 
-Circle CI Code Climate
+Circle CI 
 
 Post your favorite Recipies and have new ones recommended
-Software used in Cookin
+Software used in Yumny
 
-Cookin runs on these technologies:
+Yumny runs on these technologies:
 
-Rails 4.1.7
+Rails 5
 Ruby 2.1.3
 PostgreSQL
 JQuery
@@ -22,9 +19,9 @@ Circle CI for continuous integration
 Heroku for deployment
 AWS - S3
 Code Climate
-Ruby Gems Installed in Cookin
+Ruby Gems Installed in Yumny
 
-Cookin uses the following Gems:
+Yumny uses the following Gems:
 
 sqlite3
 better_errors (streamlined development)
@@ -37,7 +34,7 @@ bootstrap-will_paginate
 bcrypt
 fog
 pry
-Cookin uses the following Gems in production (heroku deployment):
+Yumny uses the following Gems in production (heroku deployment):
 
 pg(postgreSQL)
 thin
@@ -67,14 +64,14 @@ run heroku create (name-your-app)
 run git add -A then run git commit -m "changes"
 run git push heroku master
 run heroku run rake db:migrate
-See it live Cookin on Heroku!
-###Running the test suite in Cookin
+See it live Yumny on Heroku!
+###Running the test suite in Yumny
 
 run: rake test
 
 ###Thanks for checking out Yumny!
 
-Feel free to ask questions or send pull requests. Or Go to Cookin and set up a profile and add some new recipes! Donations can be made in mental hugs. Thank you!
+Feel free to ask questions or send pull requests. Or Go to Yumny and set up a profile and add some new recipes! Donations can be made in mental hugs. Thank you!
 
 testing specs for Yumny:
 name: string
