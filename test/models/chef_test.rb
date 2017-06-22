@@ -2,64 +2,88 @@ require 'test_helper'
 
 class ChefTest < ActiveSupport::TestCase
   
- def setup
-   @chef = Chef.new(chefname: "georgia", email:"georgia@mexample.com")
-
- end
+  setup do
+    @chef = Chef.new(
+      chefname: "Eric", 
+      email: "eric@chef.com", 
+      password: "password", 
+      password_confirmation: "password"
+    )
+  end
   
-  test "should be valid" do
+  test "chef should be valid" do
     assert @chef.valid?
   end
-
-  test "name should be present" do
-    @chef.chefname = " "
+  
+  test "chef name should be present" do
+    @chef.chefname = ""
     assert_not @chef.valid?
   end
-
-  test "name should be less than 30 characters" do
+  
+  test "chef name should be 30 characters or less" do
     @chef.chefname = "a" * 31
-    assert_not @chef.valid?
+    assert @chef.invalid?
   end
-
+  
   test "email should be present" do
-    @chef.email = " "
+    @chef.email = ""
     assert_not @chef.valid?
-  end  
-
-    test "email should not be too long" do
-  @chef.email = "a" * 245 + "@example.com"
-  assert_not @chef.valid?
   end
   
-  test "email should accept correct format" do
-    valid_emails = %w[user@example.com georgia@gmail.com M.first@yahoo.com john+smith@co.uk.org]
-    valid_emails.each do |valids|
-      @chef.email = valids
-      assert @chef.valid?, "#{valids.inspect} should be valid"
+  test "email should be 255 characters or less" do
+    @chef.email = "a" * 256
+    assert @chef.invalid?
   end
-end
   
-  test "should reject invalid addresses " do
-    invalid_emails = %w[mashur@example mashur@example,com mashur.georgia@gmail joe@foo+bar.com]
-    invalid_emails.each do |invalids|
-      @chef.email = invalids
-      assert_not @chef.valid?, "#{invalids.inspect} should be invalid"
+  test "email should be valid format" do
+    valid_emails = %w[user@example.com MASHRUR@gmail.com M.first@yahoo.ca john+smith@co.uk.org]
+    valid_emails.each do |e|
+      @chef.email = e
+      assert @chef.valid?, "#{e.inspect} should be valid"
+    end
   end
-end
-
-  test "email should be unique and case insensitive" do
-  duplicate_chef = @chef.dup
-  duplicate_chef.email = @chef.email.upcase
-  @chef.save
-  assert_not duplicate_chef.valid?
-end
   
-  test "email should be lower case before hitting db" do
-    mixed_email = "JohN@Example.com"
-    @chef.email = mixed_email
+  test "email should reject invalid addresses" do
+    invalid_emails = %w[mashrur@example mashrur@example,com mashrur.name@gmail. joe@bar+foo.com]
+    invalid_emails.each do |i|
+      @chef.email = i
+      assert @chef.invalid?, "#{i.inspect} should be invalid"
+    end
+  end
+  
+  test "emails should be unique" do
     @chef.save
-    assert_equal mixed_email.downcase, @chef.reload.email
+    duplicate_chef = Chef.new(chefname: "Mashrur", email: @chef.email)
+    assert duplicate_chef.invalid?
   end
-
-
+  
+  test "email should be case-insensitive" do
+    @chef.save
+    uppercase_chef = Chef.new(chefname: "Mashrur", email: @chef.email.upcase)
+    assert uppercase_chef.invalid?
+  end
+  
+  test "email should be made lowercase before saving" do
+    @chef.email = "ALLCAPS@EMAIL.COM"
+    @chef.save
+    assert_equal @chef.email.downcase, @chef.reload.email
+  end
+  
+  test "password should be present" do
+    @chef.password = @chef.password_confirmation = " "
+    assert_not @chef.valid?
+  end
+  
+  test "password should be at least 5 characters" do
+    @chef.password = @chef.password_confirmation = "a" * 4
+    assert_not @chef.valid?
+  end
+  
+  test "associated recipes should be destroyed" do
+    @chef.save
+    @chef.recipes.create!(name: "Testing destroy", description: "Testing destroy function")
+    assert_difference 'Recipe.count', -1 do
+      @chef.destroy
+    end
+  end
 end
